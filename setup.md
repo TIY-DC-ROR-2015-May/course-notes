@@ -1,6 +1,8 @@
-# How to Read This Guide
+### About
 
-Each section details a specific tool or setting you'll need to configure on your machine. Complete each one in turn, and feel free to reach out (to james@theironyard.com) if you have any questions. You will see several snippets like
+Because of scheduling conflicts, we won't be having the somewhat traditional first-day-eve install party. I am expecting everyone to show up on Monday with their machines ready to go, though, so here are some notes on getting that set up.
+
+Each section details a specific tool or setting you'll need to configure on your machine. Complete each one in turn, and feel free to reach out (to james@theironyard.com or on Slack) if you have any questions. You will see several snippets like
 
 ```
 $ echo "Hello, terminal"
