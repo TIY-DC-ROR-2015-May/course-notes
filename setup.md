@@ -158,3 +158,7 @@ to start a `pry` session. This is a loop where you can type Ruby code, and it wi
 # Wrapping Up
 
 If you read this far, you should be all set! Please send me a picture of M&Ms so that I know you read this.
+
+That's it!
+
+![](http://img1.wikia.nocookie.net/__cb20131123164509/degrassi/images/6/63/Post-18906-ferris-bueller-go-home-gif-fvin.gif)
