@@ -4,6 +4,7 @@ require 'minitest/autorun'
 class Statistician
   def initialize given_name=nil
     @stored_name = given_name
+    @computes    = 0
   end
 
   def name
@@ -20,6 +21,7 @@ class Statistician
   end
 
   def mean nums
+    @computes += 1
     # sum_of_numbers = 0
     # numbers.each do |n|
     #   # sum_of_numbers = sum_of_numbers + n
@@ -37,6 +39,7 @@ class Statistician
   end
 
   def mode numbers
+    @computes += 1
     winner = numbers.first
     winning_score = 0
     numbers.each do |n|
@@ -48,9 +51,22 @@ class Statistician
     end
     winner
   end
+
+  def computations_performed
+    @computes
+  end
 end
 
 class StaticisticianTest < MiniTest::Test
+  def test_history_tracking
+    s = Statistician.new
+    assert_equal 0, s.computations_performed
+    13.times do
+      s.mean [2,4]
+    end
+    assert_equal 13, s.computations_performed
+  end
+
   def test_names
     s = Statistician.new "Alice"
     t = Statistician.new "Bob"
