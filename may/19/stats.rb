@@ -2,6 +2,14 @@ require 'pry'
 require 'minitest/autorun'
 
 class Statistician
+  def initialize given_name=nil
+    @stored_name = given_name
+  end
+
+  def name
+    @stored_name
+  end
+
   def sum numbers
     sum_of_numbers = 0
     numbers.each do |n|
@@ -43,6 +51,13 @@ class Statistician
 end
 
 class StaticisticianTest < MiniTest::Test
+  def test_names
+    s = Statistician.new "Alice"
+    t = Statistician.new "Bob"
+    assert_equal "Alice", s.name
+    assert_equal "Bob",   t.name
+  end
+
   def test_sum_of_numbers
     s = Statistician.new
     assert_equal 30, s.sum([5,10,15])
