@@ -2,14 +2,22 @@ require 'pry'
 require 'minitest/autorun'
 
 class Statistician
-  def mean numbers
+  def sum numbers
     sum_of_numbers = 0
     numbers.each do |n|
       # sum_of_numbers = sum_of_numbers + n
       sum_of_numbers += n
     end
+    sum_of_numbers
+  end
 
-    sum_of_numbers.to_f / numbers.count
+  def mean nums
+    # sum_of_numbers = 0
+    # numbers.each do |n|
+    #   # sum_of_numbers = sum_of_numbers + n
+    #   sum_of_numbers += n
+    # end
+    sum(nums).to_f / nums.count
   end
 
   def simple_median numbers
@@ -35,6 +43,11 @@ class Statistician
 end
 
 class StaticisticianTest < MiniTest::Test
+  def test_sum_of_numbers
+    s = Statistician.new
+    assert_equal 30, s.sum([5,10,15])
+  end
+
   def test_mean_of_three_numbers
     s = Statistician.new
     assert_equal s.mean([5,10,15]), 10
