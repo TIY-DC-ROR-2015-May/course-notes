@@ -1,4 +1,5 @@
 require 'pry'
+require 'minitest/autorun'
 
 class Statistician
   def mean numbers
@@ -10,14 +11,49 @@ class Statistician
 
     sum_of_numbers.to_f / numbers.count
   end
+
+  def simple_median numbers
+    # [1,50,100,52]
+    position = numbers.count / 2
+    # numbers.sort[position]
+    sorted_numbers = numbers.sort
+    sorted_numbers[position]
+  end
 end
 
-numbers = [1,2,5,7,9,1,1]
+class StaticisticianTest < MiniTest::Test
+  def test_mean_of_three_numbers
+    s = Statistician.new
+    assert_equal s.mean([5,10,15]), 10
+  end
 
-s = Statistician.new
+  def test_mean_of_two_numbers
+    s = Statistician.new
+    assert_equal s.mean([5,10]), 7.5
+  end
 
-binding.pry
+  def test_median_sorted
+    s = Statistician.new
+    assert_equal s.simple_median([1,2,3,4,5]), 3
+  end
 
-puts "Mean: #{s.mean numbers}"
-puts "Median: #{s.median numbers}"
-puts "Mode: #{s.mode numbers}"
+  def test_median_unsorted
+    s = Statistician.new
+    assert_equal s.simple_median([3,2,5,1,4,1,10,100]), 4
+  end
+
+  def test_median_even
+    s = Statistician.new
+    assert_equal 52, s.simple_median([1,50,100,52])
+  end
+end
+
+# numbers = [1,2,5,7,9,1,1]
+
+# s = Statistician.new
+
+# binding.pry
+
+# puts "Mean: #{s.mean numbers}"
+# puts "Median: #{s.simple_median numbers}"
+# puts "Mode: #{s.mode numbers}"
