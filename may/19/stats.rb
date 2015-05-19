@@ -2,14 +2,15 @@ require 'pry'
 require 'minitest/autorun'
 
 class Statistician
-  def initialize given_name=nil
-    @stored_name = given_name
-    @computes    = 0
+  def initialize name=nil
+    @name = name
+    @computes = 0
   end
 
-  def name
-    @stored_name
-  end
+  attr_reader :name
+  # def name
+  #   @name
+  # end
 
   def sum numbers
     sum_of_numbers = 0
