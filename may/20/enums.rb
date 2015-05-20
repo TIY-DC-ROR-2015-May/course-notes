@@ -48,10 +48,29 @@ lines.each do |line|
   people.push person
 end
 
+# Have list people
+# Get list of their email
+emails = []
+people.each do |person|
+  email = person.email
+  emails.push email
+end
+
 binding.pry
 
 # unless double_list([1,2,3,4]) == [2,4,6,8]
 #   raise "double_list not correct"
 # end
+
+# Short version
+[1,2,3,4].map { |n| n * 2 }
+
+people = lines.map do |line|
+  first_name, last_name, _, email, _ = line.chomp.split ","
+  Person.new first_name, last_name, email
+end
+
+emails = people.map { |person| person.email }
+# people.map &:email
 
 puts "Good to go!"
