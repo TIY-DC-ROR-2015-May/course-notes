@@ -16,3 +16,9 @@ until game.over?
   result = game.check_guess guess
   puts "Your guess was: #{result}"
 end
+
+if game.won?
+  puts "Congrats! You're awesome."
+elsif game.lost?
+  puts "You're a terrible human being."
+end

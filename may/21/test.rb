@@ -16,6 +16,7 @@ class GameTest < MiniTest::Test
     result = n.check_guess n.answer
     assert_equal result, :correct!
     assert n.over?
+    assert n.won?
   end
 
   def test_game_can_check_wrong_guess
@@ -32,6 +33,8 @@ class GameTest < MiniTest::Test
       g.check_guess(answer + 1)
     end
     assert g.over?
+    assert g.lost?
+    refute g.won?
   end
 
   # Games are over after you run out of tries

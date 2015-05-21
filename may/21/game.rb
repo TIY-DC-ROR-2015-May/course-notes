@@ -11,7 +11,16 @@ class NumberGuessingGame
   end
 
   def over?
-    @user_has_won || @tries.zero?
+    #@user_has_won || @tries.zero?
+    won? || lost?
+  end
+
+  def won?
+    @user_has_won
+  end
+
+  def lost?
+    @tries.zero?
   end
 
   def check_guess guess
