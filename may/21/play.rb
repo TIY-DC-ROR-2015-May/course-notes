@@ -9,7 +9,16 @@ class Player
   end
 end
 
-player = Player.new
+class BadComputerPlayer
+  def get_guess
+    guess = rand 1..100
+    puts "Guessing #{guess}"
+    return guess
+  end
+end
+
+#player = Player.new
+player = BadComputerPlayer.new
 
 until game.over?
   guess = player.get_guess
@@ -21,4 +30,5 @@ if game.won?
   puts "Congrats! You're awesome."
 elsif game.lost?
   puts "You're a terrible human being."
+  puts "The answer was #{game.answer}, obviously"
 end

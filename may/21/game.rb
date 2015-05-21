@@ -1,3 +1,5 @@
+require 'pry'
+
 class NumberGuessingGame
   attr_reader :answer
   # def answer
