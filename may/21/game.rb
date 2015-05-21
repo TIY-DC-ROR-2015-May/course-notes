@@ -13,4 +13,14 @@ class NumberGuessingGame
   def over?
     @user_has_won || @tries.zero?
   end
+
+  def check_guess guess
+    if guess < @answer
+      return :low
+    elsif guess == @answer
+      return :correct!
+    else
+      return :high
+    end
+  end
 end

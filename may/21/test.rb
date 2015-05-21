@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'pry'
 
 require './game'
 
@@ -12,7 +13,7 @@ class GameTest < MiniTest::Test
   def test_game_can_check_wrong_guess
     g = NumberGuessingGame.new
     answer = g.answer
-    result = g.check_guess (answer + 1)
+    result = g.check_guess(answer + 1)
     assert_equal result, :high
   end
 
