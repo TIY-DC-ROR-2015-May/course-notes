@@ -18,6 +18,7 @@ class NumberGuessingGame
     if guess < @answer
       return :low
     elsif guess == @answer
+      @user_has_won = true
       return :correct!
     else
       return :high

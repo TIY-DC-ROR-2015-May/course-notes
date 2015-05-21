@@ -10,6 +10,14 @@ class GameTest < MiniTest::Test
     # refute g.over?
   end
 
+  def test_game_is_over_after_you_win
+    n = NumberGuessingGame.new
+    # you win ...
+    result = n.check_guess n.answer
+    assert_equal result, :correct!
+    assert n.over?
+  end
+
   def test_game_can_check_wrong_guess
     g = NumberGuessingGame.new
     answer = g.answer
@@ -17,6 +25,5 @@ class GameTest < MiniTest::Test
     assert_equal result, :high
   end
 
-  # Games are over after you win
   # Games are over after you run out of tries
 end
