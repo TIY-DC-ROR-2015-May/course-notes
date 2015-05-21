@@ -17,8 +17,23 @@ class BadComputerPlayer
   end
 end
 
+class SmartComputerPlayer
+  def initialize
+    @high = 100
+    @low  = 1
+  end
+
+  def get_guess
+    guess = (@high + @low) / 2
+    puts "Guessing #{guess}"
+    return guess
+  end
+end
+
 #player = Player.new
-player = BadComputerPlayer.new
+#player = BadComputerPlayer.new
+player = SmartComputerPlayer.new
+
 
 until game.over?
   guess = player.get_guess
