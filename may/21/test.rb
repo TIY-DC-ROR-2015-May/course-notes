@@ -25,5 +25,14 @@ class GameTest < MiniTest::Test
     assert_equal result, :high
   end
 
+  def test_players_can_lose
+    g = NumberGuessingGame.new
+    answer = g.answer
+    5.times do
+      g.check_guess(answer + 1)
+    end
+    assert g.over?
+  end
+
   # Games are over after you run out of tries
 end

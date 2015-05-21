@@ -15,6 +15,7 @@ class NumberGuessingGame
   end
 
   def check_guess guess
+    @tries -= 1
     if guess < @answer
       return :low
     elsif guess == @answer

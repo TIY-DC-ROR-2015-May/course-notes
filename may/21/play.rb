@@ -5,7 +5,7 @@ game = NumberGuessingGame.new
 class Player
   def get_guess
     puts "Enter your guess (1-100) >"
-    gets.chomp
+    gets.chomp.to_i
   end
 end
 
