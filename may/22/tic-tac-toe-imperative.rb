@@ -16,7 +16,8 @@ letters_in_word.each do |letter|
 end
 
 
-loop do
+game_is_over = false
+until game_is_over
   # -- Start taking player input --
 
   print "Pick a letter > "
@@ -47,4 +48,8 @@ loop do
 
   puts "You have #{tries} tries left"
   puts "The board is: #{board}"
+
+  if tries == 0 || board.join("") == word
+    game_is_over = true
+  end
 end
