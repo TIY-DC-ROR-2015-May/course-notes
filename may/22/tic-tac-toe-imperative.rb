@@ -25,15 +25,15 @@ guess = gets.chomp
 
 have_seen_a_match = false
 
-letters_in_word.each_with_index do |letter, index|
+index = 0
+letters_in_word.each do |letter|
   if letter == guess
-    # dunno ... come back to it
     have_seen_a_match = true
-    # also, update the board
     board[index] = letter
   else
     # continue on to next
   end
+  index += 1
   #binding.pry
 end
 
