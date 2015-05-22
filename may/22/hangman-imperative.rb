@@ -3,8 +3,7 @@ require 'pry'
 # -- Set up game --
 
 list = ["banana", "table", "awesome"]
-#word = list.sample
-word = list.first
+word = list.sample
 letters_in_word = word.split("") # word.chars
 tries = 5
 
@@ -18,6 +17,8 @@ end
 
 game_is_over = false
 until game_is_over
+  puts "The board is: #{board}"
+  
   # -- Start taking player input --
 
   print "Pick a letter > "
@@ -47,7 +48,6 @@ until game_is_over
   end
 
   puts "You have #{tries} tries left"
-  puts "The board is: #{board}"
 
   if tries == 0 || board.join("") == word
     game_is_over = true
