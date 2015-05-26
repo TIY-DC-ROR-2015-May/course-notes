@@ -50,8 +50,24 @@ class TicTacTest < MiniTest::Test
   end
 
   def test_can_determine_winner
-    # Start a game
-    # Play until winner
+    p1 = Player.new
+    p2 = Player.new
+    g  = TicTacToe.new p1, p2
+
+    # xoo
+    # oxx
+    #   x
+    g.record_move 5
+    g.record_move 3
+    g.record_move 6
+    g.record_move 4
+    g.record_move 9
+    g.record_move 2
+    assert_equal nil, g.winner
+
+    g.record_move 1
+
     # Verify winner
+    assert_equal p1, g.winner
   end
 end

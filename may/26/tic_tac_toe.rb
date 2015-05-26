@@ -11,6 +11,31 @@ class TicTacToe
   end
 
   def winner
+    lines = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ]
+
+    lines.each do |line|
+      # entries = []
+      # line.each do |position|
+      #   entries.push @board[position]
+      # end
+      entries = line.map { |pos| @board[pos] }
+      if entries == [:x,:x,:x]
+        return @x
+      elsif entries == [:o,:o,:o]
+        return @o
+      end
+    end
+
+    return nil
   end
 
   def board_full?
