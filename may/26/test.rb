@@ -10,7 +10,9 @@ class TicTacTest < MiniTest::Test
     p2 = Player.new
 
     g = TicTacToe.new p1, p2
+    
     assert_equal nil, g.winner
+    assert_equal p1, g.current_player
   end
 
   def test_can_determine_winner
