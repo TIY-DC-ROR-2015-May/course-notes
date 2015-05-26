@@ -4,6 +4,9 @@
 # Start up a game
 # Take moves until we have a winner
 
+require './player'
+require './tic_tac_toe'
+
 p1 = Player.new
 p2 = Player.new
 
