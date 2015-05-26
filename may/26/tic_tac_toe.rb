@@ -1,5 +1,5 @@
 class TicTacToe
-  attr_reader :board
+  attr_reader :board, :current_player
 
   def initialize player1, player2
     @x = player1
@@ -8,6 +8,27 @@ class TicTacToe
     @current_player = @x
 
     @board = Array.new 9
+  end
+
+  def display_board
+    # FIXME: improve this
+    @board.each_slice 3 do |row|
+      row.each do |entry|
+        if entry
+          print entry
+        else
+          print " "
+        end
+      end
+      puts
+    end
+  end
+
+  def ask_current_player_for_move
+    display_board
+    print "What is your move? "
+    square = gets.chomp.to_i
+    record_move square
   end
 
   def winner
@@ -63,9 +84,5 @@ class TicTacToe
 
   def over?
     !winner.nil? || board_full?
-  end
-
-  def current_player
-    @current_player
   end
 end

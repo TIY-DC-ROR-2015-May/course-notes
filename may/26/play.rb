@@ -3,6 +3,7 @@
 
 # Start up a game
 # Take moves until we have a winner
+require 'pry'
 
 require './player'
 require './tic_tac_toe'
