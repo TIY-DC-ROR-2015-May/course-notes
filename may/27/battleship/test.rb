@@ -65,6 +65,13 @@ class BoardTest < MiniTest::Test
     return board
   end
 
+  def test_cant_override_ships
+    b = board_with_ships_placed
+    assert_raises Board::IllegalMove do
+      b.place_ship Ship.new("Submarine", 3), "A3", :right
+    end
+  end
+
   def test_reports_a_hit
     b = board_with_ships_placed
 
