@@ -51,7 +51,25 @@ end
   player2_board.place_ship ship, coord, :right
 end
 
-binding.pry
-
 
 # Start taking moves
+def play_one_turn my_board, opponent_board, number
+  puts "Player #{number} - it's your turn"
+  puts "Opponent:"
+  puts opponent_board.without_ships
+  puts ""
+  puts "Yours:"
+  puts my_board.with_ships
+
+  print "Your move > "
+  coord_to_fire_on = gets.chomp
+  hit = opponent_board.fire_on! coord_to_fire_on
+  if hit
+    puts "It's a hit!"
+  else
+    puts "You missed!"
+  end
+end
+
+play_one_turn player1_board, player2_board, 1
+play_one_turn player2_board, player1_board, 2
