@@ -54,6 +54,8 @@ end
 
 # Start taking moves
 def play_one_turn my_board, opponent_board, number
+  system "clear"
+
   puts "Player #{number} - it's your turn"
   puts "Opponent:"
   puts opponent_board.without_ships
@@ -69,7 +71,29 @@ def play_one_turn my_board, opponent_board, number
   else
     puts "You missed!"
   end
+
+  puts "Press enter to continue"
+  gets.chomp
+  system "clear"
+
+  puts "Press enter when ready"
+  gets.chomp
 end
 
-play_one_turn player1_board, player2_board, 1
-play_one_turn player2_board, player1_board, 2
+player1_wins = false
+player2_wins = false
+
+until player1_wins || player2_wins
+  play_one_turn player1_board, player2_board, 1
+  if player2_board.ships.all? { |s| s.sunk? }
+    player1_wins = true
+    break
+  end
+
+  play_one_turn player2_board, player1_board, 2
+  if player1_board.ships.all? { |s| s.sunk? }
+    player2_wins = true
+  end
+end
+
+# Have winner
