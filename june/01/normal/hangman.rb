@@ -1,8 +1,13 @@
 class Hangman
   attr_reader :word, :guesses_left
 
-  def initialize
-    @word         = available_words.sample
+  def initialize word=nil
+    # @word = word || available_words.sample
+    if word
+      @word = word
+    else
+      @word = available_words.sample
+    end
     @guesses_left = 8
     @guessed      = []
   end

@@ -1,7 +1,13 @@
 require './hangman'
 require 'pry'
 
-g = Hangman.new
+if File.exists? "word.txt"
+  word = File.read "word.txt"
+  g = Hangman.new word
+else
+  g = Hangman.new
+end
+
 
 until g.over?
   puts g.board
