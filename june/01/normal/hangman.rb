@@ -1,15 +1,15 @@
 class Hangman
-  attr_reader :word, :guesses_left
+  attr_reader :word, :guesses_left, :guessed
 
-  def initialize word=nil
+  def initialize word=nil, guesses_left=nil, guessed=nil
     # @word = word || available_words.sample
     if word
       @word = word
     else
       @word = available_words.sample
     end
-    @guesses_left = 8
-    @guessed      = []
+    @guesses_left = guesses_left.to_i  || 8
+    @guessed      = guessed.split(",") || []
   end
 
   def available_words

@@ -2,8 +2,9 @@ require './hangman'
 require 'pry'
 
 if File.exists? "word.txt"
-  word = File.read "word.txt"
-  g = Hangman.new word
+  file = File.read "word.txt"
+  word, guesses_left, guesses = file.split("\n")
+  g = Hangman.new word, guesses_left, guesses
 else
   g = Hangman.new
 end
@@ -18,7 +19,11 @@ until g.over?
   
   if guess == "quit"
     puts "Saving"
-    File.write "word.txt", g.word
+    File.open "word.txt", "w" do |f|
+      f.puts g.word
+      f.puts g.guesses_left
+      f.puts g.guessed.join(",")
+    end
     exit
   end
 
