@@ -1,8 +1,10 @@
 require './hangman'
 require 'pry'
 
-if File.exists? "word.txt"
-  file = File.read "word.txt"
+SAVE_FILE_NAME = "word.txt"
+
+if File.exists? SAVE_FILE_NAME
+  file = File.read SAVE_FILE_NAME
   word, guesses_left, guesses = file.split("\n")
   g = Hangman.new word, guesses_left, guesses
 else
@@ -19,7 +21,7 @@ until g.over?
   
   if guess == "quit"
     puts "Saving"
-    File.open "word.txt", "w" do |f|
+    File.open SAVE_FILE_NAME, "w" do |f|
       f.puts g.word
       f.puts g.guesses_left
       f.puts g.guessed.join(",")
@@ -29,6 +31,8 @@ until g.over?
 
   g.record_guess guess
 end
+
+File.delete SAVE_FILE_NAME
 
 if g.won?
   puts <<WIN

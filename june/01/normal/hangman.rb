@@ -8,8 +8,16 @@ class Hangman
     else
       @word = available_words.sample
     end
-    @guesses_left = guesses_left.to_i  || 8
-    @guessed      = guessed.split(",") || []
+    @guesses_left = if guesses_left
+      guesses_left.to_i
+    else
+      8
+    end
+    @guessed = if guessed
+      guessed.split(",")
+    else
+      []
+    end
   end
 
   def available_words
