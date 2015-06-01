@@ -9,6 +9,13 @@ until g.over?
 
   print "Your guess > "
   guess = gets.chomp
+  
+  if guess == "quit"
+    puts "Saving"
+    File.write "word.txt", g.word
+    exit
+  end
+
   g.record_guess guess
 end
 
