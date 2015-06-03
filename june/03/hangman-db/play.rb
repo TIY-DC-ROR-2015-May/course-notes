@@ -6,6 +6,9 @@ require 'pry'
 puts "What is your name? "
 name = gets.chomp
 
+# User.where(name: name).first_or_create! do |u|
+#   u.wins = u.losses = 0
+# end
 player = User.where(name: name).first
 unless player # if !player.nil?
   player = User.create! name: name, wins: 0, losses: 0
