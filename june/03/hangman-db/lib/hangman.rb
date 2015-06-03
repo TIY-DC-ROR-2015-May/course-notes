@@ -3,7 +3,7 @@ class Hangman
 
   def initialize
     @word         = available_words.sample
-    @guesses_left = 8
+    @guesses_left = 1 # 8
     @guessed      = []
   end
 

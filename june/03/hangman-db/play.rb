@@ -1,10 +1,16 @@
-require './hangman'
+require './db/setup'
+require './lib/all'
+
 require 'pry'
 
 puts "What is your name? "
 name = gets.chomp
 
-player = User.create name: name
+player = User.where(name: name).first
+unless player # if !player.nil?
+  player = User.create! name: name, wins: 0, losses: 0
+end
+
 g = Hangman.new
 
 until g.over?
@@ -23,3 +29,6 @@ else
   puts "You lose! The word was #{g.word}"
   player.losses += 1
 end
+player.save
+
+puts "You've won #{player.wins} games and lost #{player.losses}"
