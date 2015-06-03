@@ -37,18 +37,16 @@ until g.over?
   g.record_guess guess
 end
 
-record = player.games.create! word: g.word
-#record = Game.create! user_id: player.id, word: g.word
+
 if g.won?
   puts "You win!"
   player.wins += 1
-  record.won = true
 else
   puts "You lose! The word was #{g.word}"
   player.losses += 1
-  record.won = false
 end
 player.save
-record.save
+
+player.games.create!(word: g.word, won: g.won?)
 
 puts "You've won #{player.wins} games and lost #{player.losses}"
