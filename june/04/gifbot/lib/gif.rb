@@ -12,4 +12,8 @@ class Gif < ActiveRecord::Base
     self.seen_count += 1
     save # self.save
   end
+
+  def all_tags
+    tags.pluck(:name).join(", ")
+  end
 end

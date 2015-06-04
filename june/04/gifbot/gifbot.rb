@@ -22,7 +22,8 @@ class GifBot
 
   def tag_gif id, tag_name
     tag = Tag.where(name: tag_name).first_or_create!
-    GifTag.create! tag_id: tag.id, gif_id: id
+    gif = Gif.find id
+    GifTag.create! tag_id: tag.id, gif_id: gif.id
   end
 end
 
@@ -37,7 +38,7 @@ elsif command == "serve"
   system "open -a 'Google Chrome' '#{link}'"
 elsif command == "list"
   gifbot.all_gifs.each do |g|
-    puts "#{g.id} #{g.creator.name}\t#{g.seen_count}\t#{g.url}"
+    puts "#{g.id} #{g.creator.name}\t#{g.seen_count}\t#{g.url}\t#{g.all_tags}"
   end
 elsif command == "tag"
   id, tag_name = ARGV
