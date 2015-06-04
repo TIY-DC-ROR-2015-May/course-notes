@@ -9,7 +9,8 @@ class GifBot
   end
 
   def random_gif
-    puts "Should serve a gif"
+    g = Gif.all.sample
+    g.url
   end
 end
 
@@ -19,7 +20,8 @@ command = ARGV.shift
 if command == "add"
   gifbot.add_gif ARGV.first
 elsif command == "serve"
-  gifbot.random_gif
+  link = gifbot.random_gif
+  system "open -a 'Google Chrome' '#{link}'"
 else
   puts "I don't know what '#{command}' means"
 end
