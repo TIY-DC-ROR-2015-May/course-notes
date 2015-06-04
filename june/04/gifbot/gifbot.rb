@@ -3,12 +3,23 @@ require 'pry'
 require './db/setup'
 require './lib/all'
 
+class GifBot
+  def add_gif link
+    puts "Should add #{link}"
+  end
+
+  def random_gif
+    puts "Should serve a gif"
+  end
+end
+
+gifbot  = GifBot.new
 command = ARGV.shift
 
 if command == "add"
-  puts "Should add #{ARGV}"
+  gifbot.add_gif ARGV.first
 elsif command == "serve"
-  puts "Should serve up a GIF"
+  gifbot.random_gif
 else
   puts "I don't know what '#{command}' means"
 end
