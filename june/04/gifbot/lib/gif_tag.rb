@@ -1,4 +1,4 @@
 class GifTag < ActiveRecord::Base
-  belong_to :gifs
-  belong_to :tags
+  belongs_to :gifs
+  belongs_to :tags
 end
