@@ -5,7 +5,7 @@ require './lib/all'
 
 class GifBot
   def add_gif link
-    puts "Should add #{link}"
+    Gif.create! url: link
   end
 
   def random_gif
