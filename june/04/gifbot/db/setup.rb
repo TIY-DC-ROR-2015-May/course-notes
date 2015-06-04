@@ -1,7 +1,7 @@
 require 'active_record'
 require 'yaml'
 
-LOG = true
+LOG = false
 
 db_config = YAML::load(File.open('config/database.yml'))
 

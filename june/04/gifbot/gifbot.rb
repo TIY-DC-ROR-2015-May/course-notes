@@ -14,6 +14,10 @@ class GifBot
     g = Gif.all.sample
     g.url
   end
+
+  def all_gifs
+    Gif.all
+  end
 end
 
 gifbot  = GifBot.new
@@ -25,6 +29,10 @@ if command == "add"
 elsif command == "serve"
   link = gifbot.random_gif
   system "open -a 'Google Chrome' '#{link}'"
+elsif command == "list"
+  gifbot.all_gifs.each do |g|
+    puts "#{g.creator.name}\t#{g.url}"
+  end
 else
   puts "I don't know what '#{command}' means"
 end
