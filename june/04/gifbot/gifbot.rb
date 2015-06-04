@@ -7,11 +7,12 @@ class GifBot
   def add_gif link, username
     user = User.where(name: username).first_or_create!
     #Gif.create! url: link, creator_id: user.id
-    user.gifs.create! url: link
+    user.gifs.create! url: link, seen_count: 0
   end
 
   def random_gif
     g = Gif.all.sample
+    g.has_been_seen!
     g.url
   end
 
@@ -31,7 +32,7 @@ elsif command == "serve"
   system "open -a 'Google Chrome' '#{link}'"
 elsif command == "list"
   gifbot.all_gifs.each do |g|
-    puts "#{g.creator.name}\t#{g.url}"
+    puts "#{g.creator.name}\t#{g.seen_count}\t#{g.url}"
   end
 else
   puts "I don't know what '#{command}' means"
