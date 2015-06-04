@@ -4,8 +4,10 @@ require './db/setup'
 require './lib/all'
 
 class GifBot
-  def add_gif link
-    Gif.create! url: link
+  def add_gif link, username
+    user = User.where(name: username).first_or_create!
+    #Gif.create! url: link, creator_id: user.id
+    user.gifs.create! url: link
   end
 
   def random_gif
@@ -18,7 +20,8 @@ gifbot  = GifBot.new
 command = ARGV.shift
 
 if command == "add"
-  gifbot.add_gif ARGV.first
+  username = `whoami`.chomp
+  gifbot.add_gif ARGV.first, username
 elsif command == "serve"
   link = gifbot.random_gif
   system "open -a 'Google Chrome' '#{link}'"
