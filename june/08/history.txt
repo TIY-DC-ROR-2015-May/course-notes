@@ -1,0 +1,10 @@
+$ man curl
+$ curl www.google.com
+$ curl hippogame.herokuapp.com
+$ curl -v hippogame.herokuapp.com
+$ curl https://api.github.com/orgs/TIY-DC-FEE-May-2015/repos
+$ curl https://api.github.com/repos/rails/rails/contributors
+$ curl https://api.github.com/user/repos
+$ curl -v https://api.github.com/orgs/TIY-DC-RoR-2015-May
+$ curl -H "Authorization: token cc01082ac13eebcde721448c8cafc0c74057683e" https://api.github.com/user/repos
+$ curl -v -H "Authorization: token cc01082ac13eebcde721448c8cafc0c74057683e" -X PATCH -d '{"description": "Hello from curl"}' https://api.github.com/orgs/TIY-DC-ROR-2015-May
