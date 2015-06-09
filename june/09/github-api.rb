@@ -23,10 +23,14 @@ class GithubAPI
     GithubAPI.get("/orgs/#{org_name}/members", headers: @headers)
   end
 
-  def repos user=nil
+  def repos page=nil, user=nil
+    page ||= 1
     user ||= "jamesdabbs"
     # GET /users/jamesdabbs/repos
-    GithubAPI.get("/users/#{user}/repos", headers: @headers)
+    GithubAPI.get("/users/#{user}/repos",
+      headers: @headers,
+      query:   { page: page, per_page: 50 }
+    )
   end
 end
 
