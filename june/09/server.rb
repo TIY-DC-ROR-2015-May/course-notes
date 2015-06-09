@@ -14,6 +14,18 @@ class MyServer < Sinatra::Base
     JSON.unparse Database
   end
 
+  post '/new_idea' do
+    Database.push params[:idea]
+    response = { status: :ok, id: (Database.length - 1) }
+    JSON.unparse response
+  end
+
+  get '/idea/:id' do
+    position = params[:id].to_i
+    idea     = Database[position]
+    JSON.unparse({ id: position, idea: idea })
+  end
+
   # -----
 
   get '/hi' do
