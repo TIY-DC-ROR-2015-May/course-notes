@@ -6,8 +6,13 @@ class GithubAPI
   include HTTParty
   base_uri 'https://api.github.com'
 
+  default_options[:headers] = {
+    "Authorization" => "token #{Token}",
+    "User-Agent"    => "Wandows Explrer"
+  }
+
   def initialize
-    @headers = { "Authorization" => "token #{Token}", "User-Agent" => "Wandows Explorer" }
+    #@headers = { "Authorization" => "token #{Token}", "User-Agent" => "Wandows Explorer" }
   end
 
   def class_org
@@ -20,17 +25,18 @@ class GithubAPI
     # end
     org_name ||= class_org
     # self.class.get ...
-    GithubAPI.get("/orgs/#{org_name}/members", headers: @headers)
+    GithubAPI.get("/orgs/#{org_name}/members")
   end
 
   def repos page=nil, user=nil
     page ||= 1
     user ||= "jamesdabbs"
     # GET /users/jamesdabbs/repos
-    GithubAPI.get("/users/#{user}/repos",
-      headers: @headers,
-      query:   { page: page, per_page: 50 }
-    )
+    GithubAPI.get("/users/#{user}/repos", query: { page: page, per_page: 50 })
+  end
+
+  def me
+    GithubAPI.get("/user")
   end
 end
 
