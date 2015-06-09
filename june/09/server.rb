@@ -26,6 +26,10 @@ class MyServer < Sinatra::Base
     JSON.unparse({ id: position, idea: idea })
   end
 
+  get '/idea' do
+    Database.sample
+  end
+
   # -----
 
   get '/hi' do
