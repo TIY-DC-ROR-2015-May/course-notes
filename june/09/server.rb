@@ -8,9 +8,11 @@ Database = [
 ]
 
 class MyServer < Sinatra::Base
+  enable :logging
 
   # List of all ideas
   get '/idea_list' do
+    headers["Content-Type"] = "application/json"
     JSON.unparse Database
   end
 
