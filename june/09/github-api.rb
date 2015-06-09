@@ -13,7 +13,14 @@ class GithubAPI
     #   org_name = class_org
     # end
     org_name ||= class_org
+    # self.class.get ...
     GithubAPI.get("/orgs/#{org_name}/members")
+  end
+
+  def repos user=nil
+    user ||= "jamesdabbs"
+    # GET /users/jamesdabbs/repos
+    GithubAPI.get("/users/#{user}/repos")
   end
 end
 
