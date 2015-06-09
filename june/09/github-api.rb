@@ -1,6 +1,8 @@
 require 'httparty'
 
 class GithubAPI
+  Token = File.read "./token"
+
   include HTTParty
   base_uri 'https://api.github.com'
 
@@ -20,7 +22,8 @@ class GithubAPI
   def repos user=nil
     user ||= "jamesdabbs"
     # GET /users/jamesdabbs/repos
-    GithubAPI.get("/users/#{user}/repos")
+    GithubAPI.get("/users/#{user}/repos",
+      headers: { "Authorization" => "token #{Token}", "User-Agent" => "Wandows Explorer" })
   end
 end
 
