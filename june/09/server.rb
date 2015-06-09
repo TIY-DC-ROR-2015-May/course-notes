@@ -8,6 +8,10 @@ class MyServer < Sinatra::Base
   get "/hello" do
     "No really, hello"
   end
+
+  post "/hi" do
+    "Hello World!".reverse
+  end
 end
 
 MyServer.run!
