@@ -10,6 +10,12 @@ Database = [
 class MyServer < Sinatra::Base
   enable :logging
 
+  set :bind, "0.0.0.0"
+
+  get '/say_hello' do
+    system "say 'Hello world'"
+  end
+
   # List of all ideas
   get '/idea_list' do
     headers["Content-Type"] = "application/json"
