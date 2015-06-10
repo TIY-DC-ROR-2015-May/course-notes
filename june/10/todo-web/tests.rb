@@ -35,10 +35,24 @@ class ToDoTest < Minitest::Test
     assert_equal item.id.to_s, last_response.body
   end
 
-  def test_users_can_add_items
+  def test_item_create_requires_a_list
     skip
     post "/add", description: "This doesn't have a list"
     assert_equal 0, Item.count
     assert_equal 400, last_response.status
+  end
+
+  def test_users_can_see_items_in_a_list
+    l = List.create! list_name: "Groceries"
+    l.items.create! item: "Food"
+    l.items.create! item: "Milk"
+
+    get "/list/Groceries"
+
+    assert_equal 200, last_response.status
+    assert_equal 2, last_response.body.count
+
+    first_item = last_response.body.first
+    assert_equal "Food", first_item["description"]
   end
 end
