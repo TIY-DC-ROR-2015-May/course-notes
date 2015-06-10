@@ -1,7 +1,14 @@
 require 'sinatra/base'
 
+require './todo'
+
 class ToDoWeb < Sinatra::Base
   set :logging, true
+
+  post "/add" do
+    listicize = ToDoList.new
+    listicize.create_entry params[:list], params[:description], params[:due_date]
+  end
 end
 
 # $0 is $PROGRAM_NAME

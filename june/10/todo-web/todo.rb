@@ -6,10 +6,10 @@ require './lib/all'
 class ToDoList
   attr_reader :user
   def initialize
-    puts "Hello! Please log-in by providing your username."
-    name = gets.chomp
-    @user = User.where(name: name).first_or_create!
-    puts "Thank you, #{name}. Select from the following commands."
+    # puts "Hello! Please log-in by providing your username."
+    # name = gets.chomp
+    @user = User.where(name: "James").first_or_create!
+    # puts "Thank you, #{name}. Select from the following commands."
   end
 
   def get_command
@@ -24,7 +24,14 @@ class ToDoList
 
     case command
     when "add" 
-      create_entry
+      puts "What list would you like to add an entry to?"
+      list_choice = gets.chomp.downcase
+      puts "Enter a brief description of your to-do item."
+      entry = gets.chomp.downcase
+      puts "When is this due?"
+      raw_due_date = gets.chomp
+
+      create_entry list_choice, entry, raw_due_date
     when "list"
       view_incomplete_items
     when "list [list_name]"
@@ -44,14 +51,9 @@ class ToDoList
     end
   end
 
-  def create_entry
-    puts "What list would you like to add an entry to?"
-    list_choice = gets.chomp.downcase
+  def create_entry list_choice, entry, raw_due_date
     finds_list = List.where(list_name: list_choice).first_or_create!
-    puts "Enter a brief description of your to-do item."
-    entry = gets.chomp.downcase
-    puts "When is this due?"
-    initial_due_date = Date.parse(gets.chomp)
+    initial_due_date = Date.parse(raw_due_date)
     @user.items.create! list_id: finds_list, item_name: entry, due_date: initial_due_date, completed: false
   end
 
@@ -113,6 +115,8 @@ class ToDoList
   # end
 end
 
-listicize = ToDoList.new
-listicize.get_command
+if $PROGRAM_NAME == __FILE__
+  listicize = ToDoList.new
+  listicize.get_command
+end
 

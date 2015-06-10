@@ -21,11 +21,11 @@ class ToDoTest < Minitest::Test
     post "/add",
       description: "Figure out testing",
       list: "test"
+    assert_equal 200, last_response.status
 
     item = Item.find_by_item "Figure out testing"
 
     assert item
-    assert last_response.ok?
     assert_equal item.id, last_response.body
   end
 end
