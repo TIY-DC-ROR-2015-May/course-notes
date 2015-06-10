@@ -35,7 +35,9 @@ class ToDoList
     when "list"
       view_incomplete_items
     when "list [list_name]"
-      view_single_list
+      puts "List name?"
+      list_choice = gets.chomp.downcase
+      view_single_list list_choice
     when "list all"
       view_all_items
     when "next"
@@ -67,9 +69,7 @@ class ToDoList
   end
 
   def view_single_list list_name
-    puts "List name?"
-    list_choice = gets.chomp.downcase
-    results = @user.items.where(list_name: list_choice)
+    results = @user.items.where(list_name: list_name)
     resulting_list results
   end
 

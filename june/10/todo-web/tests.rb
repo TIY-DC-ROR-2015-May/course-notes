@@ -19,6 +19,8 @@ class ToDoTest < Minitest::Test
 
   def setup
     Item.delete_all
+    User.delete_all
+    List.delete_all
   end
 
   def test_users_can_add_items
@@ -50,9 +52,11 @@ class ToDoTest < Minitest::Test
     get "/list/Groceries"
 
     assert_equal 200, last_response.status
-    assert_equal 2, last_response.body.count
 
-    first_item = last_response.body.first
-    assert_equal "Food", first_item["description"]
+    items = JSON.parse last_response.body
+    assert_equal 2, items.count
+
+    first_item = items.first
+    assert_equal "Food", first_item["item"]
   end
 end
