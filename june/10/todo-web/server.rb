@@ -4,4 +4,7 @@ class ToDoWeb < Sinatra::Base
   set :logging, true
 end
 
-ToDoWeb.start!
+# $0 is $PROGRAM_NAME
+if $0 == __FILE__
+  ToDoWeb.start!
+end
