@@ -34,4 +34,11 @@ class ToDoTest < Minitest::Test
     assert item
     assert_equal item.id.to_s, last_response.body
   end
+
+  def test_users_can_add_items
+    skip
+    post "/add", description: "This doesn't have a list"
+    assert_equal 0, Item.count
+    assert_equal 400, last_response.status
+  end
 end
