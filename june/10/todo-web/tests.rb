@@ -15,6 +15,10 @@ class ToDoTest < Minitest::Test
     ToDoWeb
   end
 
+  def setup
+    Item.delete_all
+  end
+
   def test_users_can_add_items
     List.create! list_name: "test"
 
@@ -26,6 +30,6 @@ class ToDoTest < Minitest::Test
     item = Item.find_by_item "Figure out testing"
 
     assert item
-    assert_equal item.id, last_response.body
+    assert_equal item.id.to_s, last_response.body
   end
 end

@@ -7,7 +7,8 @@ class ToDoWeb < Sinatra::Base
 
   post "/add" do
     listicize = ToDoList.new
-    listicize.create_entry params[:list], params[:description], params[:due_date]
+    item = listicize.create_entry params[:list], params[:description], params[:due_date]
+    item.id.to_s
   end
 end
 

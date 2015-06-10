@@ -52,9 +52,13 @@ class ToDoList
   end
 
   def create_entry list_choice, entry, raw_due_date
-    finds_list = List.where(list_name: list_choice).first_or_create!
-    initial_due_date = Date.parse(raw_due_date)
-    @user.items.create! list_id: finds_list, item_name: entry, due_date: initial_due_date, completed: false
+    finds_list = @user.lists.where(list_name: list_choice).first_or_create!
+    initial_due_date = if raw_due_date
+      Date.parse(raw_due_date)
+    else
+      nil
+    end
+    finds_list.items.create! item: entry, due_date: initial_due_date, completed: false
   end
 
   def view_incomplete_items
