@@ -4,6 +4,8 @@ require 'pry'
 require 'httparty'
 
 class GithubRepeater < Sinatra::Base
+  set :logging, true
+
   get '/user/:username' do
     @name = params[:username]
     @friends = ["jamesdabbs", "kylehill", "kwals"]

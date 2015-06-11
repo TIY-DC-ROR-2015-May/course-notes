@@ -8,11 +8,26 @@
 
     <p>You have <%= @repos.count %> repos</p>
 
-    <ul>
-      <% @repos.each do |repo| %>
-        <li><%= repo["name"] %></li>
-      <% end %>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Repo Name</th>
+          <th>API</th>
+          <th>HTML</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @repos.each do |repo| %>
+          <tr>
+            <td><%= repo["name"] %></td>
+            <td><a href="<%= repo["url"] %>">X</a></td>
+            <td><a href="<%= repo["html_url"] %>">X</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
 
     <ul>
       <% @friends.each do |friend| %>
