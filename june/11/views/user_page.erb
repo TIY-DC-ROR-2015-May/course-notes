@@ -6,6 +6,14 @@
   <body>
     <h1>Hello, <%= @name %>!</h1>
 
+    <p>You have <%= @repos.count %> repos</p>
+
+    <ul>
+      <% @repos.each do |repo| %>
+        <li><%= repo["name"] %></li>
+      <% end %>
+    </ul>
+
     <ul>
       <% @friends.each do |friend| %>
         <li><a href="/user/<%= friend %>"><%= friend %></a></li>
